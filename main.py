@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware  # 导入跨域中间件
 from fastapi import FastAPI          # 导入FastAPI类，用来创建服务器程序
 from pydantic import BaseModel       # 导入BaseModel类，用来定义数据结构
 from langchain_ollama import OllamaEmbeddings, ChatOllama  # Embedding模型和LLM
@@ -9,7 +10,12 @@ from langchain_core.output_parsers import StrOutputParser   # 把LLM输出转成
 
 # ---- 实例化FastAPI，创建服务器程序 ----
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],    # 允许所有来源的请求，* 表示通配符，即全部允许
+    allow_methods=["*"],    # 允许所有 HTTP 请求方法，包括 GET、POST 等
+    allow_headers=["*"],    # 允许所有请求头字段
+)
 # ---- 定义请求体的数据结构 ----
 # BaseModel是pydantic库提供的类，继承它之后FastAPI能自动把JSON解析成这个类的实例
 class AskRequest(BaseModel):
