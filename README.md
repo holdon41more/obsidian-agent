@@ -34,6 +34,6 @@
 - [x] Qdrant向量数据库存储
 - [x] 语义检索
 - [x] 本地LLM问答
-- [ ] FastAPI接口
-- [ ] Vue3前端界面
+- [x] FastAPI接口
+- [x] Vue3前端界面
 - [ ] Agent功能
